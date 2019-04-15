@@ -1,2 +1,3 @@
 # adb-tools-tk
-adb 文件传输工具
+adb文件传输工具
+运行main.py
