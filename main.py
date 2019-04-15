@@ -82,10 +82,14 @@ def upload_call_back():
     """
     上传文件按钮的调用函数
     """
-    objective_path = objective_entry.get()      # 获取objective_entry中路径，并赋值给变量objective_path
     file_path = '\"' + filename + '\"'          # 在文件路径前后加上"",来支持中文及文件名中含有空格给adb shell命令的影响
-    os.system('adb push %s %s' % (file_path, objective_path))   # 将file_path路径下得文件，上传到objective_path 的路径下
-
+    pos = file_path.rfind('/')                  # 定位最后一个‘/’的出现位置
+    file_name = file_path[pos:]                 # 获取文件名
+    # 获取objective_entry中路径，并赋值给变量objective_path
+    # 将获取的文件名，添加到目标路径后
+    objective_path = objective_entry.get() + file_name
+    # 将file_path路径下得文件，上传到objective_path 的路径下
+    os.system('adb push %s %s' % (file_path, objective_path))
 
 def shell_call_back():
     """
